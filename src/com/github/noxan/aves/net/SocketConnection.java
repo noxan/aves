@@ -19,6 +19,8 @@ public class SocketConnection implements Connection {
     private StringInputProtocol in;
     private StringOutputProtocol out;
 
+    private boolean isConnected;
+
     public SocketConnection(Server server, Socket socket) {
 	this.server = server;
 	this.socket = socket;
@@ -38,6 +40,7 @@ public class SocketConnection implements Connection {
     @Override
     public void start() {
 	logger.log(Level.INFO, "connection connected");
+	isConnected = true;
     }
 
     @Override
