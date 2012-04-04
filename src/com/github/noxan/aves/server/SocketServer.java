@@ -3,6 +3,7 @@ package com.github.noxan.aves.server;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
+import java.net.Socket;
 
 public class SocketServer implements Server, Runnable {
     private String host;
@@ -32,6 +33,13 @@ public class SocketServer implements Server, Runnable {
 
     @Override
     public void run() {
+	while (true) {
+	    try {
+		Socket socket = server.accept();
+	    } catch (IOException e) {
+		e.printStackTrace();
+	    }
+	}
     }
 
     @Override
