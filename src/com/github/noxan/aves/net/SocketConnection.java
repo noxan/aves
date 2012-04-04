@@ -37,7 +37,7 @@ public class SocketConnection implements Connection {
 
     @Override
     public void start() {
-
+	logger.log(Level.INFO, "connection connected");
     }
 
     @Override
