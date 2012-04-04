@@ -1,5 +1,7 @@
 package com.github.noxan.aves.server;
 
+import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 
 public class SocketServer implements Server {
@@ -20,6 +22,12 @@ public class SocketServer implements Server {
 
     @Override
     public void start() {
+	try {
+	    server = new ServerSocket();
+	    server.bind(new InetSocketAddress(host, port));
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
     }
 
     @Override
