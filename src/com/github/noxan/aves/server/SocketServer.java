@@ -6,6 +6,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
+import com.github.noxan.aves.net.Connection;
+import com.github.noxan.aves.net.SocketConnection;
+
 public class SocketServer implements Server, Runnable {
     private String host;
     private int port;
@@ -38,6 +41,7 @@ public class SocketServer implements Server, Runnable {
 	while (true) {
 	    try {
 		Socket socket = server.accept();
+		Connection connection = new SocketConnection(this, socket);
 	    } catch (SocketTimeoutException e) {
 	    } catch (IOException e) {
 		e.printStackTrace();
