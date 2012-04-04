@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 
-public class SocketServer implements Server {
+public class SocketServer implements Server, Runnable {
     private String host;
     private int port;
 
@@ -28,6 +28,10 @@ public class SocketServer implements Server {
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
+    }
+
+    @Override
+    public void run() {
     }
 
     @Override
