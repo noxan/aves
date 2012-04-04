@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 
 public class SocketServer implements Server, Runnable {
     private String host;
@@ -25,6 +26,7 @@ public class SocketServer implements Server, Runnable {
     public void start() {
 	try {
 	    server = new ServerSocket();
+	    server.setSoTimeout(1000);
 	    server.bind(new InetSocketAddress(host, port));
 	} catch (IOException e) {
 	    e.printStackTrace();
@@ -36,6 +38,7 @@ public class SocketServer implements Server, Runnable {
 	while (true) {
 	    try {
 		Socket socket = server.accept();
+	    } catch (SocketTimeoutException e) {
 	    } catch (IOException e) {
 		e.printStackTrace();
 	    }
