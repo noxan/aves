@@ -1,5 +1,10 @@
 package com.github.noxan.aves.net;
 
-public class SocketConnection {
+import java.net.Socket;
 
+import com.github.noxan.aves.server.Server;
+
+public class SocketConnection {
+    public SocketConnection(Server server, Socket socket) {
+    }
 }
