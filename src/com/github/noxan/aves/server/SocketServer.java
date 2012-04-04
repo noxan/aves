@@ -80,4 +80,15 @@ public class SocketServer implements Server, Runnable {
 	dataEvents.add(new Tuple<Connection, Object>(connection, data));
     }
 
+    private class EventManager implements Runnable {
+	@Override
+	public void run() {
+	    while (true) {
+		Tuple<Connection, Object> event = dataEvents.poll();
+		if (event != null) {
+		    handler.handleData(event.getFirst(), event.getSecond());
+		}
+	    }
+	}
+    }
 }
