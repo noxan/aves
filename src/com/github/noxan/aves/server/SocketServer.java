@@ -77,6 +77,7 @@ public class SocketServer implements Server, Runnable {
     }
 
     public void offerData(Connection connection, Object data) {
+	dataEvents.add(new Tuple<Connection, Object>(connection, data));
     }
 
 }
