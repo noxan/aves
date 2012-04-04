@@ -6,4 +6,6 @@ public interface Connection {
     public InetAddress getHost();
 
     public int getPort();
+
+    public void start();
 }

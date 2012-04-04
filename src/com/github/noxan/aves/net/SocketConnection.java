@@ -15,6 +15,11 @@ public class SocketConnection implements Connection {
     }
 
     @Override
+    public void start() {
+
+    }
+
+    @Override
     public InetAddress getHost() {
 	return socket.getInetAddress();
     }
