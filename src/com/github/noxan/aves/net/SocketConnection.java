@@ -22,9 +22,13 @@ public class SocketConnection implements Connection {
 
     private boolean isConnected;
 
+    private InputManager inputManager;
+    private Thread inputThread;
+
     public SocketConnection(Server server, Socket socket) {
 	this.server = server;
 	this.socket = socket;
+	inputManager = new InputManager();
 	try {
 	    in = new StringInputProtocol(socket.getInputStream());
 	    out = new StringOutputProtocol(socket.getOutputStream());
@@ -42,6 +46,8 @@ public class SocketConnection implements Connection {
     public void start() {
 	logger.log(Level.INFO, "connection connected");
 	isConnected = true;
+	inputThread = new Thread(inputManager);
+	inputThread.start();
     }
 
     @Override
