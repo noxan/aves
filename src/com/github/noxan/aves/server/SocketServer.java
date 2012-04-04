@@ -19,6 +19,10 @@ public class SocketServer implements Server {
     }
 
     @Override
+    public void start() {
+    }
+
+    @Override
     public String getHost() {
 	return host;
     }
