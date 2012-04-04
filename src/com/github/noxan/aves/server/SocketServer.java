@@ -46,6 +46,7 @@ public class SocketServer implements Server, Runnable {
 	    try {
 		Socket socket = server.accept();
 		Connection connection = new SocketConnection(this, socket);
+		connections.add(connection);
 	    } catch (SocketTimeoutException e) {
 	    } catch (IOException e) {
 		e.printStackTrace();
