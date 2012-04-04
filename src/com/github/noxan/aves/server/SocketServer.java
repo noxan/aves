@@ -70,4 +70,8 @@ public class SocketServer implements Server, Runnable {
     public int getPort() {
 	return port;
     }
+
+    public void offerData(Connection connection, Object data) {
+    }
+
 }
