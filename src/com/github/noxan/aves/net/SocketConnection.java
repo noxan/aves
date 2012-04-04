@@ -1,5 +1,6 @@
 package com.github.noxan.aves.net;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -51,5 +52,30 @@ public class SocketConnection implements Connection {
     @Override
     public int getPort() {
 	return socket.getPort();
+    }
+
+    private class InputManager implements Runnable {
+	@Override
+	public void run() {
+	    while (isConnected) {
+		try {
+		    Object data = in.read();
+		    if (data != null) {
+			logger.log(Level.INFO, "data: "+data);
+		    } else {
+			isConnected = false;
+			logger.log(Level.INFO, "connection disconnected");
+		    }
+		} catch (EOFException e) {
+		    e.printStackTrace();
+		    logger.log(Level.INFO, "connection dropped");
+		    isConnected = false;
+		} catch (IOException e) {
+		    e.printStackTrace();
+		    logger.log(Level.INFO, "connection disconnected");
+		    isConnected = false;
+		}
+	    }
+	}
     }
 }
