@@ -18,6 +18,7 @@ public class SocketServer implements Server, Runnable {
     private Set<Connection> connections;
 
     private ServerSocket server;
+    private Thread serverThread;
 
     public SocketServer() {
 	this("0.0.0.0", 1666);
@@ -35,6 +36,8 @@ public class SocketServer implements Server, Runnable {
 	    server = new ServerSocket();
 	    server.setSoTimeout(1000);
 	    server.bind(new InetSocketAddress(host, port));
+	    serverThread = new Thread(this);
+	    serverThread.start();
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
