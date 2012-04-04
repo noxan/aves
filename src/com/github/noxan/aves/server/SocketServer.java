@@ -16,8 +16,7 @@ public class SocketServer implements Server, Runnable {
     private ServerSocket server;
 
     public SocketServer() {
-	this.host = "0.0.0.0";
-	this.port = 1666;
+	this("0.0.0.0", 1666);
     }
 
     public SocketServer(String host, int port) {
