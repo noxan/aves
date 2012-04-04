@@ -12,5 +12,14 @@ public class SocketServer implements Server {
 	this.host = host;
 	this.port = port;
     }
+
+    @Override
+    public String getHost() {
+	return host;
+    }
+
+    @Override
+    public int getPort() {
+	return port;
     }
 }
