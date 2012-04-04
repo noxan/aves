@@ -8,6 +8,11 @@ public class SocketServer implements Server {
 
     private ServerSocket server;
 
+    public SocketServer() {
+	this.host = "0.0.0.0";
+	this.port = 1666;
+    }
+
     public SocketServer(String host, int port) {
 	this.host = host;
 	this.port = port;
