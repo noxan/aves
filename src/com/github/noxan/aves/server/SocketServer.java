@@ -15,18 +15,21 @@ public class SocketServer implements Server, Runnable {
     private String host;
     private int port;
 
+    private ServerHandler handler;
+
     private Set<Connection> connections;
 
     private ServerSocket server;
     private Thread serverThread;
 
-    public SocketServer() {
-	this("0.0.0.0", 1666);
+    public SocketServer(ServerHandler handler) {
+	this("0.0.0.0", 1666, handler);
     }
 
-    public SocketServer(String host, int port) {
+    public SocketServer(String host, int port, ServerHandler handler) {
 	this.host = host;
 	this.port = port;
+	this.handler = handler;
 	connections = new HashSet<Connection>();
     }
 
