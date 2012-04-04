@@ -5,6 +5,8 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.github.noxan.aves.net.Connection;
 import com.github.noxan.aves.net.SocketConnection;
@@ -12,6 +14,8 @@ import com.github.noxan.aves.net.SocketConnection;
 public class SocketServer implements Server, Runnable {
     private String host;
     private int port;
+
+    private Set<Connection> connections;
 
     private ServerSocket server;
 
@@ -22,6 +26,7 @@ public class SocketServer implements Server, Runnable {
     public SocketServer(String host, int port) {
 	this.host = host;
 	this.port = port;
+	connections = new HashSet<Connection>();
     }
 
     @Override
