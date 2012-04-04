@@ -4,4 +4,7 @@ import java.net.ServerSocket;
 
 public class SocketServer {
     private ServerSocket server;
+
+    public SocketServer() {
+    }
 }
