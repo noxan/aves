@@ -7,14 +7,18 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import com.github.noxan.aves.net.Connection;
 import com.github.noxan.aves.net.SocketConnection;
+import com.github.noxan.aves.util.Tuple;
 
 public class SocketServer implements Server, Runnable {
     private String host;
     private int port;
 
+    private BlockingQueue<Tuple<Connection, Object>> dataEvents;
     private ServerHandler handler;
 
     private Set<Connection> connections;
@@ -30,6 +34,7 @@ public class SocketServer implements Server, Runnable {
 	this.host = host;
 	this.port = port;
 	this.handler = handler;
+	dataEvents = new LinkedBlockingQueue<>();
 	connections = new HashSet<Connection>();
     }
 
