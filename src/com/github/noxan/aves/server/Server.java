@@ -9,5 +9,5 @@ public interface Server {
 
     public void start();
 
-    void offerData(Connection connection, Object data);
+    void offerEvent(Connection connection, Object data);
 }

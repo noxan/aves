@@ -82,7 +82,7 @@ public class SocketServer implements Server, Runnable {
 	return port;
     }
 
-    public void offerData(Connection connection, Object data) {
+    public void offerEvent(Connection connection, Object data) {
 	dataEvents.add(new Tuple<Connection, Object>(connection, data));
     }
 

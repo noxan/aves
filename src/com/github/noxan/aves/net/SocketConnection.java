@@ -67,7 +67,7 @@ public class SocketConnection implements Connection {
 		try {
 		    Object data = in.read();
 		    if (data != null) {
-			server.offerData(SocketConnection.this, data);
+			server.offerEvent(SocketConnection.this, data);
 		    } else {
 			isConnected = false;
 			logger.log(Level.INFO, "connection disconnected");
