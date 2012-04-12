@@ -6,4 +6,6 @@ public interface ServerHandler {
     public void readData(Connection connection, Object data);
 
     public void clientConnect(Connection connection);
+
+    public void clientDisconnect(Connection connection);
 }

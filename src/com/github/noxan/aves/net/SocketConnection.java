@@ -71,16 +71,15 @@ public class SocketConnection implements Connection {
 		    if (data != null) {
 			server.offerEvent(ServerEvent.DATA_READ, new Tuple<Connection, Object>(SocketConnection.this, data));
 		    } else {
+			server.offerEvent(ServerEvent.CLIENT_DISCONNECT, SocketConnection.this);
 			isConnected = false;
-			logger.log(Level.INFO, "connection disconnected");
 		    }
 		} catch (EOFException e) {
 		    e.printStackTrace();
 		    logger.log(Level.INFO, "connection dropped");
 		    isConnected = false;
 		} catch (IOException e) {
-		    e.printStackTrace();
-		    logger.log(Level.INFO, "connection disconnected");
+		    server.offerEvent(ServerEvent.CLIENT_DISCONNECT, SocketConnection.this);
 		    isConnected = false;
 		}
 	    }

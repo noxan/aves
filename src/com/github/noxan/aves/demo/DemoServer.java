@@ -25,4 +25,9 @@ public class DemoServer implements ServerHandler {
     public void clientConnect(Connection connection) {
 	System.out.println("Client connect: " + connection);
     }
+
+    @Override
+    public void clientDisconnect(Connection connection) {
+	System.out.println("Client disconnect: " + connection);
+    }
 }
