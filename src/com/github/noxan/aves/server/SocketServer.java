@@ -18,7 +18,7 @@ public class SocketServer implements Server, Runnable {
     private String host;
     private int port;
 
-    private BlockingQueue<Tuple<Connection, Object>> dataEvents;
+    private BlockingQueue<Tuple<ServerEvent, Object>> serverEvents;
     private ServerHandler handler;
 
     private Set<Connection> connections;
@@ -37,7 +37,7 @@ public class SocketServer implements Server, Runnable {
 	this.host = host;
 	this.port = port;
 	this.handler = handler;
-	dataEvents = new LinkedBlockingQueue<>();
+	serverEvents = new LinkedBlockingQueue<>();
 	connections = new HashSet<Connection>();
     }
 
@@ -82,17 +82,22 @@ public class SocketServer implements Server, Runnable {
 	return port;
     }
 
-    public void offerEvent(Connection connection, Object data) {
-	dataEvents.add(new Tuple<Connection, Object>(connection, data));
+    public void offerEvent(ServerEvent type, Object data) {
+	serverEvents.add(new Tuple<ServerEvent, Object>(type, data));
     }
 
     private class EventManager implements Runnable {
 	@Override
 	public void run() {
 	    while (true) {
-		Tuple<Connection, Object> event = dataEvents.poll();
+		Tuple<ServerEvent, Object> event = serverEvents.poll();
 		if (event != null) {
-		    handler.handleData(event.getFirst(), event.getSecond());
+		    switch (event.getFirst()) {
+		    case DATA_READ:
+			Tuple<?, ?> read = (Tuple<?, ?>) event.getSecond();
+			handler.handleData((Connection) read.getFirst(), read.getSecond());
+			break;
+		    }
 		}
 	    }
 	}

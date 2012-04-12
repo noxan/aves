@@ -1,6 +1,5 @@
 package com.github.noxan.aves.server;
 
-import com.github.noxan.aves.net.Connection;
 
 public interface Server {
     public String getHost();
@@ -9,5 +8,5 @@ public interface Server {
 
     public void start();
 
-    void offerEvent(Connection connection, Object data);
+    void offerEvent(ServerEvent type, Object data);
 }

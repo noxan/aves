@@ -10,6 +10,8 @@ import java.util.logging.Logger;
 import com.github.noxan.aves.protocol.string.StringInputProtocol;
 import com.github.noxan.aves.protocol.string.StringOutputProtocol;
 import com.github.noxan.aves.server.Server;
+import com.github.noxan.aves.server.ServerEvent;
+import com.github.noxan.aves.util.Tuple;
 
 public class SocketConnection implements Connection {
     private Logger logger = Logger.getLogger(SocketConnection.class.getName());
@@ -67,7 +69,7 @@ public class SocketConnection implements Connection {
 		try {
 		    Object data = in.read();
 		    if (data != null) {
-			server.offerEvent(SocketConnection.this, data);
+			server.offerEvent(ServerEvent.DATA_READ, new Tuple<Connection, Object>(SocketConnection.this, data));
 		    } else {
 			isConnected = false;
 			logger.log(Level.INFO, "connection disconnected");
