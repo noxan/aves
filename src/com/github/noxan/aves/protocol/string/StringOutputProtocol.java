@@ -13,7 +13,11 @@ public class StringOutputProtocol {
     }
 
     public void write(Object data) throws IOException {
-	out.write(data.toString());
+	String str = data.toString();
+	if (!str.endsWith("\n")) {
+	    str += "\n";
+	}
+	out.write(str);
 	out.flush();
     }
 }
