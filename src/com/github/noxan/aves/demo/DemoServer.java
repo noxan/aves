@@ -17,7 +17,7 @@ public class DemoServer implements ServerHandler {
     }
 
     @Override
-    public void handleData(Connection connection, Object data) {
+    public void readData(Connection connection, Object data) {
 	System.out.println(connection + ": " + data);
     }
 }
