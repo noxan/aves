@@ -75,8 +75,7 @@ public class SocketConnection implements Connection {
 			isConnected = false;
 		    }
 		} catch (EOFException e) {
-		    e.printStackTrace();
-		    logger.log(Level.INFO, "connection dropped");
+		    server.offerEvent(ServerEvent.CLIENT_LOST, SocketConnection.this);
 		    isConnected = false;
 		} catch (IOException e) {
 		    server.offerEvent(ServerEvent.CLIENT_DISCONNECT, SocketConnection.this);

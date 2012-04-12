@@ -30,4 +30,9 @@ public class DemoServer implements ServerHandler {
     public void clientDisconnect(Connection connection) {
 	System.out.println("Client disconnect: " + connection);
     }
+
+    @Override
+    public void clientLost(Connection connection) {
+	System.out.println("Client lost: " + connection);
+    }
 }

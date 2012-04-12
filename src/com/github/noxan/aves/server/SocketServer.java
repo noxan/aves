@@ -103,6 +103,9 @@ public class SocketServer implements Server, Runnable {
 		    case CLIENT_DISCONNECT:
 			handler.clientDisconnect((Connection) event.getSecond());
 			break;
+		    case CLIENT_LOST:
+			handler.clientLost((Connection) event.getSecond());
+			break;
 		    }
 		}
 	    }

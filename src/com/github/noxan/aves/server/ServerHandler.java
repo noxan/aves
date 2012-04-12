@@ -8,4 +8,6 @@ public interface ServerHandler {
     public void clientConnect(Connection connection);
 
     public void clientDisconnect(Connection connection);
+
+    public void clientLost(Connection connection);
 }
