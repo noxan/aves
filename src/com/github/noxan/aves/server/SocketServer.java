@@ -97,6 +97,9 @@ public class SocketServer implements Server, Runnable {
 			Tuple<?, ?> read = (Tuple<?, ?>) event.getSecond();
 			handler.readData((Connection) read.getFirst(), read.getSecond());
 			break;
+		    case CLIENT_CONNECT:
+			handler.clientConnect((Connection) event.getSecond());
+			break;
 		    }
 		}
 	    }

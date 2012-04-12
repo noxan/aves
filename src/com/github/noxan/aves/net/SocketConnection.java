@@ -46,7 +46,7 @@ public class SocketConnection implements Connection {
 
     @Override
     public void start() {
-	logger.log(Level.INFO, "connection connected");
+	server.offerEvent(ServerEvent.CLIENT_CONNECT, this);
 	isConnected = true;
 	inputThread = new Thread(inputManager);
 	inputThread.start();

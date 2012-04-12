@@ -20,4 +20,9 @@ public class DemoServer implements ServerHandler {
     public void readData(Connection connection, Object data) {
 	System.out.println(connection + ": " + data);
     }
+
+    @Override
+    public void clientConnect(Connection connection) {
+	System.out.println("Client connect: " + connection);
+    }
 }
