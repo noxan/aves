@@ -4,8 +4,6 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.github.noxan.aves.protocol.string.StringInputProtocol;
 import com.github.noxan.aves.protocol.string.StringOutputProtocol;
@@ -14,8 +12,6 @@ import com.github.noxan.aves.server.ServerEvent;
 import com.github.noxan.aves.util.Tuple;
 
 public class SocketConnection implements Connection {
-    private Logger logger = Logger.getLogger(SocketConnection.class.getName());
-
     private Server server;
     private Socket socket;
 
