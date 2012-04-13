@@ -23,16 +23,12 @@ public class SocketConnection implements Connection {
     private InputManager inputManager;
     private Thread inputThread;
 
-    public SocketConnection(Server server, Socket socket) {
+    public SocketConnection(Server server, Socket socket) throws IOException {
 	this.server = server;
 	this.socket = socket;
 	inputManager = new InputManager();
-	try {
-	    in = new StringInputProtocol(socket.getInputStream());
-	    out = new StringOutputProtocol(socket.getOutputStream());
-	} catch (IOException e) {
-	    e.printStackTrace();
-	}
+	in = new StringInputProtocol(socket.getInputStream());
+	out = new StringOutputProtocol(socket.getOutputStream());
     }
 
     @Override
