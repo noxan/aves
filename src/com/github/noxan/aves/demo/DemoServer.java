@@ -25,21 +25,21 @@ public class DemoServer implements ServerHandler {
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
-	System.out.println(connection + ": " + data);
+	System.out.println(connection + ": " + data + "");
     }
 
     @Override
     public void clientConnect(Connection connection) {
-	System.out.println("Client connect: " + connection);
+	System.out.println(connection + " connect");
     }
 
     @Override
     public void clientDisconnect(Connection connection) {
-	System.out.println("Client disconnect: " + connection);
+	System.out.println(connection + " disconnect");
     }
 
     @Override
     public void clientLost(Connection connection) {
-	System.out.println("Client lost: " + connection);
+	System.out.println(connection + " lost");
     }
 }
