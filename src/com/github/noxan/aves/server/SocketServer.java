@@ -63,7 +63,6 @@ public class SocketServer implements Server, Runnable {
 	    try {
 		Socket socket = server.accept();
 		Connection connection = new SocketConnection(this, socket);
-		connections.add(connection);
 		connection.start();
 	    } catch (SocketTimeoutException e) {
 	    } catch (IOException e) {
@@ -98,6 +97,7 @@ public class SocketServer implements Server, Runnable {
 			handler.readData((Connection) read.getFirst(), read.getSecond());
 			break;
 		    case CLIENT_CONNECT:
+			connections.add((Connection) event.getSecond());
 			handler.clientConnect((Connection) event.getSecond());
 			break;
 		    case CLIENT_DISCONNECT:
