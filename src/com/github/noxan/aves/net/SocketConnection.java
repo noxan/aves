@@ -58,6 +58,11 @@ public class SocketConnection implements Connection {
 	return socket.getPort();
     }
 
+    @Override
+    public String toString() {
+	return "SocketConnection(" + getHost() + ":" + getPort() + ")";
+    }
+
     private class InputManager implements Runnable {
 	@Override
 	public void run() {
