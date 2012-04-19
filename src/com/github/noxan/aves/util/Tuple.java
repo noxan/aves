@@ -5,23 +5,23 @@ public class Tuple<A, B> {
     private B second;
 
     public Tuple(A first, B second) {
-	setFirst(first);
-	setSecond(second);
+        setFirst(first);
+        setSecond(second);
     }
 
     public void setFirst(A first) {
-	this.first = first;
+        this.first = first;
     }
 
     public A getFirst() {
-	return first;
+        return first;
     }
 
     public void setSecond(B second) {
-	this.second = second;
+        this.second = second;
     }
 
     public B getSecond() {
-	return second;
+        return second;
     }
 }

@@ -5,15 +5,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+
 public class StringInputProtocol {
     private BufferedReader in;
 
     public StringInputProtocol(InputStream in) {
-	this.in = new BufferedReader(new InputStreamReader(in));
+        this.in = new BufferedReader(new InputStreamReader(in));
     }
 
     public Object read() throws IOException {
-	Object data = in.readLine();
-	return data;
+        Object data = in.readLine();
+        return data;
     }
 }
