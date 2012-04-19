@@ -77,6 +77,12 @@ public class SocketServer implements Server, Runnable {
 	return Collections.unmodifiableSet(connections);
     }
 
+    public void broadcast(Object data) throws IOException {
+	for(Connection connection:connections) {
+	    connection.write(data);
+	}
+    }
+
     @Override
     public String getHost() {
 	return host;
