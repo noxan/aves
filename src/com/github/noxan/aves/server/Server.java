@@ -1,3 +1,8 @@
+/* 
+ * Copyright (c) 2012, noxan
+ * See LICENSE for details.
+ */
+
 package com.github.noxan.aves.server;
 
 import java.util.Set;
