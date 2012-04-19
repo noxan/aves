@@ -12,7 +12,7 @@ public interface Server {
 
     public void start();
 
-    void offerEvent(ServerEvent type, Object data);
+    public void offerEvent(ServerEvent type, Object data);
 
     public Set<Connection> getConnections();
 }
