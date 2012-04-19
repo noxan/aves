@@ -5,6 +5,7 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.BlockingQueue;
@@ -69,6 +70,11 @@ public class SocketServer implements Server, Runnable {
 		e.printStackTrace();
 	    }
 	}
+    }
+
+    @Override
+    public Set<Connection> getConnections() {
+	return Collections.unmodifiableSet(connections);
     }
 
     @Override
