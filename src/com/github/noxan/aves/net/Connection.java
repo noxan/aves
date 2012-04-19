@@ -10,5 +10,7 @@ public interface Connection {
 
     public void start();
 
+    public void stop();
+
     public void write(Object data) throws IOException;
 }

@@ -45,6 +45,17 @@ public class SocketConnection implements Connection {
     }
 
     @Override
+    public void stop() {
+	isConnected = false;
+	try {
+	    socket.close();
+	} catch(IOException e) {
+	    e.printStackTrace();
+	}
+	server.offerEvent(ServerEvent.CLIENT_DISCONNECT, this);
+    }
+
+    @Override
     public InetAddress getHost() {
 	return socket.getInetAddress();
     }
