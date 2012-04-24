@@ -7,10 +7,10 @@ import com.github.noxan.aves.auth.accessor.UsernamePassword;
 import com.github.noxan.aves.auth.accessor.UsernamePasswordAccessor;
 import com.github.noxan.aves.auth.storage.InMemoryUsernamePasswordStorage;
 import com.github.noxan.aves.net.Connection;
-import com.github.noxan.aves.server.ServerHandler;
+import com.github.noxan.aves.server.ServerAdapter;
 import com.github.noxan.aves.server.SocketServer;
 
-public class AuthServer implements ServerHandler {
+public class AuthServer extends ServerAdapter {
     public static void main(String[] args) {
         new AuthServer();
     }
@@ -23,18 +23,6 @@ public class AuthServer implements ServerHandler {
 
         SocketServer server = new SocketServer(this);
         server.start();
-    }
-
-    @Override
-    public void clientConnect(Connection connection) {
-    }
-
-    @Override
-    public void clientDisconnect(Connection connection) {
-    }
-
-    @Override
-    public void clientLost(Connection connection) {
     }
 
     @Override
