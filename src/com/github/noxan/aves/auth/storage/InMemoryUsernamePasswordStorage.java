@@ -3,6 +3,7 @@ package com.github.noxan.aves.auth.storage;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.github.noxan.aves.auth.AuthException;
 import com.github.noxan.aves.auth.accessor.UsernamePasswordAccessor;
 
 public class InMemoryUsernamePasswordStorage {
@@ -16,10 +17,10 @@ public class InMemoryUsernamePasswordStorage {
         users.put(username, password);
     }
 
-    public String requestUser(UsernamePasswordAccessor accessor) {
+    public String requestUser(UsernamePasswordAccessor accessor) throws AuthException {
         if (accessor.checkPassword(users.get(accessor.getUsername()))) {
             return accessor.getUsername();
         }
-        return null;
+        throw new AuthException("Invalid password or unknown username.");
     }
 }
