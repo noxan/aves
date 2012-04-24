@@ -29,4 +29,9 @@ public class Tuple<A, B> {
     public B getSecond() {
         return second;
     }
+
+    @Override
+    public String toString() {
+        return getClass().getName() + "(" + getFirst() + ", " + getSecond() + ")";
+    }
 }
