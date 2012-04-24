@@ -58,6 +58,9 @@ public class AuthServer implements ServerHandler {
                     connection.write("LOGIN ERROR: Invalid parameter(s)");
                 }
                 break;
+            case "LOGOUT":
+                connection.write("Not implemented yet!");
+                break;
             }
         } catch (IOException e) {
             e.printStackTrace();
