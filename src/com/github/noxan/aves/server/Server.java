@@ -5,6 +5,7 @@
 
 package com.github.noxan.aves.server;
 
+import java.io.IOException;
 import java.util.Set;
 
 import com.github.noxan.aves.net.Connection;
@@ -15,9 +16,9 @@ public interface Server {
 
     public int getPort();
 
-    public void start();
+    public void start() throws IOException;
 
-    public void stop();
+    public void stop() throws IOException;
 
     public void offerEvent(ServerEvent type, Object data);
 

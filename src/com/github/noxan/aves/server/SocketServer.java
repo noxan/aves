@@ -48,27 +48,20 @@ public class SocketServer implements Server, Runnable {
     }
 
     @Override
-    public void start() {
-        try {
-            server = new ServerSocket();
-            server.setSoTimeout(1000);
-            server.bind(new InetSocketAddress(host, port));
-            serverThread = new Thread(this);
-            serverThread.start();
-            managerThread = new Thread(new EventManager());
-            managerThread.start();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+    public void start() throws IOException {
+        isRunning = true;
+        server = new ServerSocket();
+        server.setSoTimeout(1000);
+        server.bind(new InetSocketAddress(host, port));
+        serverThread = new Thread(this);
+        serverThread.start();
+        managerThread = new Thread(new EventManager());
+        managerThread.start();
     }
 
     @Override
-    public void stop() {
-        try {
-            server.close();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+    public void stop() throws IOException {
+        server.close();
         try {
             serverThread.join(1000);
         } catch(InterruptedException e) {
