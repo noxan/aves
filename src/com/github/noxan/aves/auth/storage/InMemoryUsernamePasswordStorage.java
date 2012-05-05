@@ -19,7 +19,7 @@ public class InMemoryUsernamePasswordStorage {
     }
 
     public User requestUser(UsernamePasswordAccessor accessor) throws AuthException {
-        if (accessor.checkPassword(users.get(accessor.getUsername()))) {
+        if(accessor.checkPassword(users.get(accessor.getUsername()))) {
             return new User(accessor.getUsername());
         }
         throw new AuthException("Invalid password or unknown username.");

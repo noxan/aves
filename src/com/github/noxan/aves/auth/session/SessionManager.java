@@ -20,10 +20,10 @@ public class SessionManager {
 
     public boolean requestSession(UsernamePasswordAccessor accessor, Connection connection) throws AuthException {
         User user = storage.requestUser(accessor);
-        if (map.containsKey(connection)) {
+        if(map.containsKey(connection)) {
             System.out.println("Connection exists");
             return true;
-        } else if (map.containsValue(user)) {
+        } else if(map.containsValue(user)) {
             throw new AuthException("User already logged in.");
         } else {
             System.out.println("Session created");
