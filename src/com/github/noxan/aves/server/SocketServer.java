@@ -136,7 +136,7 @@ public class SocketServer implements Server, Runnable {
     private class EventManager implements Runnable {
         @Override
         public void run() {
-            while(true) {
+            while(isRunning || serverEvents.isEmpty()) {
                 Tuple<ServerEvent, Object> event = serverEvents.poll();
                 if(event != null) {
                     switch(event.getFirst()) {
