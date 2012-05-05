@@ -19,7 +19,6 @@ public class StringInputProtocol {
     }
 
     public Object read() throws IOException {
-        Object data = in.readLine();
-        return data;
+        return in.readLine();
     }
 }
