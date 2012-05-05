@@ -44,7 +44,7 @@ public class SocketServer implements Server, Runnable {
         this.host = host;
         this.port = port;
         this.handler = handler;
-        serverEvents = new LinkedBlockingQueue<>();
+        serverEvents = new LinkedBlockingQueue<Tuple<ServerEvent, Object>>();
         connections = new HashSet<Connection>();
     }
 
