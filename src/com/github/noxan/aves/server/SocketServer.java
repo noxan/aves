@@ -33,7 +33,6 @@ public class SocketServer implements Server, Runnable {
     private ServerSocket server;
     private Thread serverThread;
 
-    private EventManager manager;
     private Thread managerThread;
 
     public SocketServer(ServerHandler handler) {
@@ -54,10 +53,9 @@ public class SocketServer implements Server, Runnable {
             server = new ServerSocket();
             server.setSoTimeout(1000);
             server.bind(new InetSocketAddress(host, port));
-            manager = new EventManager();
             serverThread = new Thread(this);
             serverThread.start();
-            managerThread = new Thread(manager);
+            managerThread = new Thread(new EventManager());
             managerThread.start();
         } catch(IOException e) {
             e.printStackTrace();
