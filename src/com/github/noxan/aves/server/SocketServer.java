@@ -70,17 +70,17 @@ public class SocketServer implements Server, Runnable {
     public void stop() throws IOException {
         if(isRunning) {
             isRunning = false;
-            server.close();
             try {
                 serverThread.join(1000);
             } catch(InterruptedException e) {
                 e.printStackTrace();
             }
             try {
-                managerThread.join(1000);
+                managerThread.join();
             } catch(InterruptedException e) {
                 e.printStackTrace();
             }
+            server.close();
         } else {
             throw new IllegalStateException("Server is not running.");
         }
