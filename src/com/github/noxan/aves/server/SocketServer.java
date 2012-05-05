@@ -88,7 +88,7 @@ public class SocketServer implements Server, Runnable {
 
     @Override
     public void run() {
-        while(true) {
+        while(isRunning) {
             try {
                 Socket socket = server.accept();
                 Connection connection = new SocketConnection(this, socket);
