@@ -101,13 +101,13 @@ public class SocketServer implements Server, Runnable {
     }
 
     public void broadcast(Object data) throws IOException {
-        for(Connection connection:connections) {
+        for(Connection connection : connections) {
             connection.write(data);
         }
     }
 
     public void broadcast(Connection self, Object data) throws IOException {
-        for(Connection connection:connections) {
+        for(Connection connection : connections) {
             if(connection != self) {
                 connection.write(data);
             }
