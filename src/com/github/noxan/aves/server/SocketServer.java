@@ -118,22 +118,24 @@ public class SocketServer implements Server, Runnable {
                 Tuple<ServerEvent, Object> event = serverEvents.poll();
                 if(event != null) {
                     switch(event.getFirst()) {
-                    case DATA_READ:
-                        Tuple<?, ?> read = (Tuple<?, ?>)event.getSecond();
-                        handler.readData((Connection)read.getFirst(), read.getSecond());
-                        break;
-                    case CLIENT_CONNECT:
-                        connections.add((Connection)event.getSecond());
-                        handler.clientConnect((Connection)event.getSecond());
-                        break;
-                    case CLIENT_DISCONNECT:
-                        handler.clientDisconnect((Connection)event.getSecond());
-                        connections.remove((Connection)event.getSecond());
-                        break;
-                    case CLIENT_LOST:
-                        handler.clientLost((Connection)event.getSecond());
-                        connections.remove((Connection)event.getSecond());
-                        break;
+                        case DATA_READ:
+                            Tuple<?, ?> read = (Tuple<?, ?>) event.getSecond();
+                            handler.readData((Connection) read.getFirst(), read.getSecond());
+                            break;
+                        case CLIENT_CONNECT:
+                            connections.add((Connection) event.getSecond());
+                            handler.clientConnect((Connection) event.getSecond());
+                            break;
+                        case CLIENT_DISCONNECT:
+                            handler.clientDisconnect((Connection) event.getSecond());
+                            connections.remove((Connection) event.getSecond());
+                            break;
+                        case CLIENT_LOST:
+                            handler.clientLost((Connection) event.getSecond());
+                            connections.remove((Connection) event.getSecond());
+                            break;
+                        case DATA_WRITE:
+                            break;
                     }
                 }
             }
