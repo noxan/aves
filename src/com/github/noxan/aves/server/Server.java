@@ -17,6 +17,8 @@ public interface Server {
 
     public void start();
 
+    public void stop();
+
     public void offerEvent(ServerEvent type, Object data);
 
     public Set<Connection> getConnections();

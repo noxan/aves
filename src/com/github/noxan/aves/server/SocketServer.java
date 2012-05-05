@@ -63,6 +63,25 @@ public class SocketServer implements Server, Runnable {
     }
 
     @Override
+    public void stop() {
+        try {
+            server.close();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            serverThread.join(1000);
+        } catch(InterruptedException e) {
+            e.printStackTrace();
+        }
+        try {
+            managerThread.join(1000);
+        } catch(InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void run() {
         while(true) {
             try {
