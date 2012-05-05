@@ -60,6 +60,11 @@ public class SocketConnection implements Connection {
         } catch(IOException e) {
             e.printStackTrace();
         }
+        try {
+            inputThread.join(1000);
+        } catch(InterruptedException e) {
+            e.printStackTrace();
+        }
         server.offerEvent(ServerEvent.CLIENT_DISCONNECT, this);
     }
 
