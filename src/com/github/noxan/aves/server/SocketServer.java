@@ -30,6 +30,8 @@ public class SocketServer implements Server, Runnable {
 
     private Set<Connection> connections;
 
+    private boolean isRunning;
+
     private ServerSocket server;
     private Thread serverThread;
 
@@ -45,32 +47,42 @@ public class SocketServer implements Server, Runnable {
         this.handler = handler;
         serverEvents = new LinkedBlockingQueue<Tuple<ServerEvent, Object>>();
         connections = new HashSet<Connection>();
+        isRunning = false;
     }
 
     @Override
     public void start() throws IOException {
-        isRunning = true;
-        server = new ServerSocket();
-        server.setSoTimeout(1000);
-        server.bind(new InetSocketAddress(host, port));
-        serverThread = new Thread(this);
-        serverThread.start();
-        managerThread = new Thread(new EventManager());
-        managerThread.start();
+        if(isRunning) {
+            throw new IllegalStateException("Server is already running");
+        } else {
+            isRunning = true;
+            server = new ServerSocket();
+            server.setSoTimeout(1000);
+            server.bind(new InetSocketAddress(host, port));
+            serverThread = new Thread(this);
+            serverThread.start();
+            managerThread = new Thread(new EventManager());
+            managerThread.start();
+        }
     }
 
     @Override
     public void stop() throws IOException {
-        server.close();
-        try {
-            serverThread.join(1000);
-        } catch(InterruptedException e) {
-            e.printStackTrace();
-        }
-        try {
-            managerThread.join(1000);
-        } catch(InterruptedException e) {
-            e.printStackTrace();
+        if(isRunning) {
+            isRunning = false;
+            server.close();
+            try {
+                serverThread.join(1000);
+            } catch(InterruptedException e) {
+                e.printStackTrace();
+            }
+            try {
+                managerThread.join(1000);
+            } catch(InterruptedException e) {
+                e.printStackTrace();
+            }
+        } else {
+            throw new IllegalStateException("Server is not running.");
         }
     }
 
