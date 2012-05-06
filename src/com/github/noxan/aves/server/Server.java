@@ -10,7 +10,6 @@ import java.util.Set;
 
 import com.github.noxan.aves.net.Connection;
 
-
 public interface Server {
     public String getHost();
 

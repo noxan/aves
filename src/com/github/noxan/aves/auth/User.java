@@ -14,7 +14,7 @@ public class User {
     @Override
     public boolean equals(Object obj) {
         if(obj instanceof User) {
-            User user = (User) obj;
+            User user = (User)obj;
             return getUsername().equals(user.getUsername());
         }
         return super.equals(obj);

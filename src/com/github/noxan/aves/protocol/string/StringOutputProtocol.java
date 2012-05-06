@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
-
 public class StringOutputProtocol {
     private BufferedWriter out;
 

@@ -20,7 +20,6 @@ import com.github.noxan.aves.net.Connection;
 import com.github.noxan.aves.net.SocketConnection;
 import com.github.noxan.aves.util.Tuple;
 
-
 public class SocketServer implements Server, Runnable {
     private String host;
     private int port;
@@ -106,13 +105,13 @@ public class SocketServer implements Server, Runnable {
     }
 
     public void broadcast(Object data) throws IOException {
-        for(Connection connection : connections) {
+        for(Connection connection:connections) {
             connection.write(data);
         }
     }
 
     public void broadcast(Connection self, Object data) throws IOException {
-        for(Connection connection : connections) {
+        for(Connection connection:connections) {
             if(connection != self) {
                 connection.write(data);
             }
@@ -141,20 +140,20 @@ public class SocketServer implements Server, Runnable {
                 if(event != null) {
                     switch(event.getFirst()) {
                         case DATA_READ:
-                            Tuple<?, ?> read = (Tuple<?, ?>) event.getSecond();
-                            handler.readData((Connection) read.getFirst(), read.getSecond());
+                            Tuple<?, ?> read = (Tuple<?, ?>)event.getSecond();
+                            handler.readData((Connection)read.getFirst(), read.getSecond());
                             break;
                         case CLIENT_CONNECT:
-                            connections.add((Connection) event.getSecond());
-                            handler.clientConnect((Connection) event.getSecond());
+                            connections.add((Connection)event.getSecond());
+                            handler.clientConnect((Connection)event.getSecond());
                             break;
                         case CLIENT_DISCONNECT:
-                            handler.clientDisconnect((Connection) event.getSecond());
-                            connections.remove((Connection) event.getSecond());
+                            handler.clientDisconnect((Connection)event.getSecond());
+                            connections.remove((Connection)event.getSecond());
                             break;
                         case CLIENT_LOST:
-                            handler.clientLost((Connection) event.getSecond());
-                            connections.remove((Connection) event.getSecond());
+                            handler.clientLost((Connection)event.getSecond());
+                            connections.remove((Connection)event.getSecond());
                             break;
                         case DATA_WRITE:
                             break;
