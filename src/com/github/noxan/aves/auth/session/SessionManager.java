@@ -18,17 +18,17 @@ public class SessionManager {
         map = new HashMap<Connection, User>();
     }
 
-    public boolean requestSession(UsernamePasswordAccessor accessor, Connection connection) throws AuthException {
+    public User requestSession(UsernamePasswordAccessor accessor, Connection connection) throws AuthException {
         User user = storage.requestUser(accessor);
         if(map.containsKey(connection)) {
             System.out.println("Connection exists");
-            return true;
+            return user;
         } else if(map.containsValue(user)) {
             throw new AuthException("User already logged in.");
         } else {
             System.out.println("Session created");
             map.put(connection, user);
-            return true;
+            return user;
         }
     }
 
