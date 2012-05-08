@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 
+import com.github.noxan.aves.protocol.ProtocolFactory;
 import com.github.noxan.aves.protocol.string.StringInputProtocol;
 import com.github.noxan.aves.protocol.string.StringOutputProtocol;
 import com.github.noxan.aves.server.Server;
@@ -28,12 +29,12 @@ public class SocketConnection implements Connection {
     private InputManager inputManager;
     private Thread inputThread;
 
-    public SocketConnection(Server server, Socket socket) throws IOException {
+    public SocketConnection(Server server, Socket socket, ProtocolFactory factory) throws IOException {
         this.server = server;
         this.socket = socket;
         inputManager = new InputManager();
-        in = new StringInputProtocol(socket.getInputStream());
-        out = new StringOutputProtocol(socket.getOutputStream());
+        in = factory.createInputProtocol(socket.getInputStream());
+        out = factory.createOutputProtocol(socket.getOutputStream());
     }
 
     @Override

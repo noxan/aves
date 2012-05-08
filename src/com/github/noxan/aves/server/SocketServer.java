@@ -18,9 +18,12 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import com.github.noxan.aves.net.Connection;
 import com.github.noxan.aves.net.SocketConnection;
+import com.github.noxan.aves.protocol.ProtocolFactory;
 import com.github.noxan.aves.util.Tuple;
 
 public class SocketServer implements Server, Runnable {
+    private ProtocolFactory factory;
+
     private String host;
     private int port;
 
@@ -37,13 +40,14 @@ public class SocketServer implements Server, Runnable {
     private Thread managerThread;
 
     public SocketServer(ServerHandler handler) {
-        this("0.0.0.0", 1666, handler);
+        this("0.0.0.0", 1666, handler, new ProtocolFactory());
     }
 
-    public SocketServer(String host, int port, ServerHandler handler) {
+    public SocketServer(String host, int port, ServerHandler handler, ProtocolFactory factory) {
         this.host = host;
         this.port = port;
         this.handler = handler;
+        this.factory = factory;
         serverEvents = new LinkedBlockingQueue<Tuple<ServerEvent, Object>>();
         connections = new HashSet<Connection>();
         isRunning = false;
@@ -90,7 +94,7 @@ public class SocketServer implements Server, Runnable {
         while(isRunning) {
             try {
                 Socket socket = server.accept();
-                Connection connection = new SocketConnection(this, socket);
+                Connection connection = new SocketConnection(this, socket, factory);
                 connection.start();
             } catch(SocketTimeoutException ignored) {
             } catch(IOException e) {
