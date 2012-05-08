@@ -18,6 +18,13 @@ public class SessionManager {
         map = new HashMap<Connection, User>();
     }
 
+    public User getSession(Connection connection) throws AuthException {
+        if(map.containsKey(connection)) {
+            return map.get(connection);
+        }
+        throw new AuthException("Session does not exist for this connection");
+    }
+
     public User requestSession(UsernamePasswordAccessor accessor, Connection connection) throws AuthException {
         User user = storage.requestUser(accessor);
         if(map.containsKey(connection)) {
