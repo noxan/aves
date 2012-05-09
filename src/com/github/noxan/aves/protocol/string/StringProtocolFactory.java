@@ -4,7 +4,7 @@ import java.io.OutputStream;
 
 import com.github.noxan.aves.protocol.ProtocolFactory;
 
-public class StringProtocolFactory implements ProtocolFactory<StringInputProtocol, StringOutputProtocol> {
+public class StringProtocolFactory implements ProtocolFactory {
     @Override
     public StringInputProtocol createInputProtocol(java.io.InputStream in) {
         return new StringInputProtocol(in);

@@ -23,7 +23,7 @@ import com.github.noxan.aves.protocol.string.StringProtocolFactory;
 import com.github.noxan.aves.util.Tuple;
 
 public class SocketServer implements Server, Runnable {
-    private ProtocolFactory<?, ?> factory;
+    private ProtocolFactory factory;
 
     private String host;
     private int port;
@@ -44,7 +44,7 @@ public class SocketServer implements Server, Runnable {
         this("0.0.0.0", 1666, handler, new StringProtocolFactory());
     }
 
-    public SocketServer(String host, int port, ServerHandler handler, ProtocolFactory<?, ?> factory) {
+    public SocketServer(String host, int port, ServerHandler handler, ProtocolFactory factory) {
         this.host = host;
         this.port = port;
         this.handler = handler;
