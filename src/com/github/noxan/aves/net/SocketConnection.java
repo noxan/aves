@@ -43,7 +43,6 @@ public class SocketConnection implements Connection {
         }
     }
 
-    @Override
     public void start() {
         server.offerEvent(ServerEvent.CLIENT_CONNECT, this);
         isConnected = true;

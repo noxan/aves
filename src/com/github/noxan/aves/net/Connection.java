@@ -12,7 +12,6 @@ public interface Connection {
 
     public int getPort();
 
-    public void start();
 
     public void stop();
 
