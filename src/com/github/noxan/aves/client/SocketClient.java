@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-import com.github.noxan.aves.client.Client;
-import com.github.noxan.aves.client.ClientHandler;
 
 public class SocketClient implements Client {
     private String host;
