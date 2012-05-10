@@ -26,6 +26,8 @@ public class SocketClient implements Client, Connection {
     private InputManager inputManager;
     private Thread inputThread;
 
+    private Thread managerThread;
+
     private BlockingQueue<Tuple<ClientEvent, Object>> clientEvents;
 
     public SocketClient(ClientHandler handler) {
@@ -65,6 +67,8 @@ public class SocketClient implements Client, Connection {
         inputManager = new InputManager();
         inputThread = new Thread(inputManager);
         inputThread.start();
+        managerThread = new Thread(new EventManager());
+        managerThread.start();
     }
 
     @Override
