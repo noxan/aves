@@ -35,4 +35,8 @@ public class SocketClient implements Client {
         socket = new Socket();
         socket.connect(new InetSocketAddress(host, port));
     }
+
+    @Override
+    public void disconnect() {
+    }
 }

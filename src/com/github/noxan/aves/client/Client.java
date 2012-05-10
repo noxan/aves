@@ -8,4 +8,6 @@ public interface Client {
     public int getPort();
 
     public void connect() throws IOException;
+
+    public void disconnect();
 }
