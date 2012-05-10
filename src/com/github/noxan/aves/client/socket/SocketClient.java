@@ -1,12 +1,14 @@
 package com.github.noxan.aves.client.socket;
 
 import java.io.IOException;
+import java.net.Socket;
 
 import com.github.noxan.aves.client.Client;
 
 public class SocketClient implements Client {
     private String host;
     private int port;
+    private Socket socket;
 
     public SocketClient() {
         this("localhost", 1666);
