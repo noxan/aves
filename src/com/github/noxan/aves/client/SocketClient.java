@@ -33,6 +33,7 @@ public class SocketClient implements Client, Connection {
 
     @Override
     public void write(Object data) throws IOException {
+        out.write(data);
     }
 
     @Override
