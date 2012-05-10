@@ -1,4 +1,4 @@
-package com.github.noxan.aves.client.socket;
+package com.github.noxan.aves.client;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
