@@ -8,6 +8,10 @@ public class SocketClient implements Client {
     private String host;
     private int port;
 
+    public SocketClient() {
+        this("localhost", 1666);
+    }
+
     public SocketClient(String host, int port) {
         this.host = host;
         this.port = port;
