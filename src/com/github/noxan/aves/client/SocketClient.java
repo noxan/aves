@@ -82,6 +82,7 @@ public class SocketClient implements Client, Connection {
             while(true) {
                 try {
                     Object data = in.read();
+                    offerEvent(ClientEvent.DATA_READ, data);
                 } catch(IOException e) {
                     e.printStackTrace();
                 }
