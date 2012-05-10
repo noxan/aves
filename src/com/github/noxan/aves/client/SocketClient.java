@@ -4,8 +4,9 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
+import com.github.noxan.aves.net.Connection;
 
-public class SocketClient implements Client {
+public class SocketClient implements Client, Connection {
     private String host;
     private int port;
     private Socket socket;
@@ -19,6 +20,10 @@ public class SocketClient implements Client {
         this.host = host;
         this.port = port;
         this.handler = handler;
+    }
+
+    @Override
+    public void write(Object data) throws IOException {
     }
 
     @Override
