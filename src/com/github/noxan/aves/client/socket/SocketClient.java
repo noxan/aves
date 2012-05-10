@@ -8,6 +8,11 @@ public class SocketClient implements Client {
     private String host;
     private int port;
 
+    public SocketClient(String host, int port) {
+        this.host = host;
+        this.port = port;
+    }
+
     @Override
     public String getHost() {
         return host;
