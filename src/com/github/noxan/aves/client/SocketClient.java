@@ -59,4 +59,17 @@ public class SocketClient implements Client, Connection {
     public void disconnect() {
         handler.clientDisconnect();
     }
+
+    private class InputManager implements Runnable {
+        @Override
+        public void run() {
+            while(true) {
+                try {
+                    Object data = in.read();
+                } catch(IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }
