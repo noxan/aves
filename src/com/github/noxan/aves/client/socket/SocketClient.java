@@ -35,11 +35,13 @@ public class SocketClient implements Client {
 
     @Override
     public void connect() throws IOException {
+        handler.clientConnect();
         socket = new Socket();
         socket.connect(new InetSocketAddress(host, port));
     }
 
     @Override
     public void disconnect() {
+        handler.clientDisconnect();
     }
 }
