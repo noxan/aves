@@ -72,6 +72,10 @@ public class SocketClient implements Client, Connection {
         handler.clientDisconnect();
     }
 
+    private void offerEvent(ClientEvent event, Object data) {
+        clientEvents.offer(new Tuple<ClientEvent, Object>(event, data));
+    }
+
     private class InputManager implements Runnable {
         @Override
         public void run() {
