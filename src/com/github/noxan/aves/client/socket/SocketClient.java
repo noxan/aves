@@ -5,19 +5,22 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 
 import com.github.noxan.aves.client.Client;
+import com.github.noxan.aves.client.ClientHandler;
 
 public class SocketClient implements Client {
     private String host;
     private int port;
     private Socket socket;
+    private ClientHandler handler;
 
-    public SocketClient() {
-        this("localhost", 1666);
+    public SocketClient(ClientHandler handler) {
+        this("localhost", 1666, handler);
     }
 
-    public SocketClient(String host, int port) {
+    public SocketClient(String host, int port, ClientHandler handler) {
         this.host = host;
         this.port = port;
+        this.handler = handler;
     }
 
     @Override
