@@ -5,16 +5,17 @@ import java.io.IOException;
 import com.github.noxan.aves.client.Client;
 
 public class SocketClient implements Client {
+    private String host;
+    private int port;
+
     @Override
     public String getHost() {
-        // TODO Auto-generated method stub
-        return null;
+        return host;
     }
 
     @Override
     public int getPort() {
-        // TODO Auto-generated method stub
-        return 0;
+        return port;
     }
 
     @Override
