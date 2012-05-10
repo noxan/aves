@@ -76,6 +76,20 @@ public class SocketClient implements Client, Connection {
         clientEvents.offer(new Tuple<ClientEvent, Object>(event, data));
     }
 
+    private class EventManager implements Runnable {
+        @Override
+        public void run() {
+            while(true) {
+                Tuple<ClientEvent, Object> event = clientEvents.poll();
+                switch(event.getFirst()) {
+                    case DATA_READ:
+                        handler.readData(event.getSecond());
+                        break;
+                }
+            }
+        }
+    }
+
     private class InputManager implements Runnable {
         @Override
         public void run() {
