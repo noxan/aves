@@ -4,4 +4,6 @@ public interface ClientHandler {
     public void clientConnect();
 
     public void clientDisconnect();
+
+    public void readData(Object data);
 }
