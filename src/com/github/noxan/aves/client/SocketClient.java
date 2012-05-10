@@ -20,6 +20,9 @@ public class SocketClient implements Client, Connection {
     private InputProtocol in;
     private OutputProtocol out;
 
+    private InputManager inputManager;
+    private Thread inputThread;
+
     public SocketClient(ClientHandler handler) {
         this("localhost", 1666, handler, new StringProtocolFactory());
     }
@@ -53,6 +56,9 @@ public class SocketClient implements Client, Connection {
         socket.connect(new InetSocketAddress(host, port));
         in = factory.createInputProtocol(socket.getInputStream());
         out = factory.createOutputProtocol(socket.getOutputStream());
+        inputManager = new InputManager();
+        inputThread = new Thread(inputManager);
+        inputThread.start();
     }
 
     @Override
