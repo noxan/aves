@@ -12,8 +12,7 @@ public interface Connection {
 
     public int getPort();
 
-
-    public void stop();
+    public void disconnect();
 
     public void write(Object data) throws IOException;
 }

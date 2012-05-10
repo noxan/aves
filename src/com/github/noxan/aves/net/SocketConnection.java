@@ -51,7 +51,7 @@ public class SocketConnection implements Connection {
     }
 
     @Override
-    public void stop() {
+    public void disconnect() {
         isConnected = false;
         try {
             socket.close();
