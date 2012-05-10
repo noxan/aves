@@ -1,6 +1,7 @@
 package com.github.noxan.aves.client.socket;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 
 import com.github.noxan.aves.client.Client;
@@ -31,7 +32,7 @@ public class SocketClient implements Client {
 
     @Override
     public void connect() throws IOException {
-        // TODO Auto-generated method stub
-
+        socket = new Socket();
+        socket.connect(new InetSocketAddress(host, port));
     }
 }
