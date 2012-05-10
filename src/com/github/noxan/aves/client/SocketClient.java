@@ -3,12 +3,15 @@ package com.github.noxan.aves.client;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import com.github.noxan.aves.net.Connection;
 import com.github.noxan.aves.protocol.InputProtocol;
 import com.github.noxan.aves.protocol.OutputProtocol;
 import com.github.noxan.aves.protocol.ProtocolFactory;
 import com.github.noxan.aves.protocol.string.StringProtocolFactory;
+import com.github.noxan.aves.util.Tuple;
 
 public class SocketClient implements Client, Connection {
     private String host;
@@ -23,6 +26,8 @@ public class SocketClient implements Client, Connection {
     private InputManager inputManager;
     private Thread inputThread;
 
+    private BlockingQueue<Tuple<ClientEvent, Object>> clientEvents;
+
     public SocketClient(ClientHandler handler) {
         this("localhost", 1666, handler, new StringProtocolFactory());
     }
@@ -32,6 +37,7 @@ public class SocketClient implements Client, Connection {
         this.port = port;
         this.handler = handler;
         this.factory = factory;
+        this.clientEvents = new LinkedBlockingQueue<Tuple<ClientEvent, Object>>();
     }
 
     @Override
