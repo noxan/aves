@@ -7,7 +7,6 @@ package com.github.noxan.aves.net;
 
 import java.io.EOFException;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.Socket;
 
 import com.github.noxan.aves.protocol.InputProtocol;
@@ -69,8 +68,8 @@ public class SocketConnection implements Connection {
     }
 
     @Override
-    public InetAddress getHost() {
-        return socket.getInetAddress();
+    public String getHost() {
+        return socket.getInetAddress().getHostAddress();
     }
 
     @Override

@@ -6,10 +6,9 @@
 package com.github.noxan.aves.net;
 
 import java.io.IOException;
-import java.net.InetAddress;
 
 public interface Connection {
-    public InetAddress getHost();
+    public String getHost();
 
     public int getPort();
 
