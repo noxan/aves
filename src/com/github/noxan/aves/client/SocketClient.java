@@ -88,7 +88,7 @@ public class SocketClient implements Client, Connection {
     private class EventManager implements Runnable {
         @Override
         public void run() {
-            while(true) {
+            while(isConnected || !clientEvents.isEmpty()) {
                 Tuple<ClientEvent, Object> event = clientEvents.poll();
                 if(event != null) {
                     switch(event.getFirst()) {
@@ -104,7 +104,7 @@ public class SocketClient implements Client, Connection {
     private class InputManager implements Runnable {
         @Override
         public void run() {
-            while(true) {
+            while(isConnected) {
                 try {
                     Object data = in.read();
                     if(data != null) {
