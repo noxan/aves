@@ -85,10 +85,12 @@ public class SocketClient implements Client, Connection {
         public void run() {
             while(true) {
                 Tuple<ClientEvent, Object> event = clientEvents.poll();
-                switch(event.getFirst()) {
-                    case DATA_READ:
-                        handler.readData(event.getSecond());
-                        break;
+                if(event != null) {
+                    switch(event.getFirst()) {
+                        case DATA_READ:
+                            handler.readData(event.getSecond());
+                            break;
+                    }
                 }
             }
         }
