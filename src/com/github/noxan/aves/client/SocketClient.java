@@ -92,6 +92,12 @@ public class SocketClient implements Client, Connection {
                         case DATA_READ:
                             handler.readData(event.getSecond());
                             break;
+                        case SERVER_DISCONNECT:
+                            handler.serverDisconnect();
+                            break;
+                        case SERVER_LOST:
+                            handler.serverLost();
+                            break;
                     }
                 }
             }
