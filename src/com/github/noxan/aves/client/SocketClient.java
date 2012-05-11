@@ -75,6 +75,21 @@ public class SocketClient implements Client, Connection {
     @Override
     public void disconnect() {
         isConnected = false;
+        try {
+            inputThread.join();
+        } catch(InterruptedException e) {
+            e.printStackTrace();
+        }
+        try {
+            managerThread.join(1000);
+        } catch(InterruptedException e) {
+            e.printStackTrace();
+        }
+        try {
+            socket.close();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
         handler.clientDisconnect();
     }
 
