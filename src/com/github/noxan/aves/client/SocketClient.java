@@ -45,7 +45,11 @@ public class SocketClient implements Client, Connection {
 
     @Override
     public void write(Object data) throws IOException {
-        out.write(data);
+        if(isConnected) {
+            out.write(data);
+        } else {
+            throw new IllegalStateException("Client is not connected.");
+        }
     }
 
     @Override
