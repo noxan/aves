@@ -19,6 +19,8 @@ public class SocketClient implements Client, Connection {
     private Socket socket;
     private ClientHandler handler;
 
+    private boolean isConnected;
+
     private ProtocolFactory factory;
     private InputProtocol in;
     private OutputProtocol out;
