@@ -25,9 +25,7 @@ public class SocketClient implements Client, Connection {
     private InputProtocol in;
     private OutputProtocol out;
 
-    private InputManager inputManager;
     private Thread inputThread;
-
     private Thread managerThread;
 
     private BlockingQueue<Tuple<ClientEvent, Object>> clientEvents;
@@ -68,8 +66,7 @@ public class SocketClient implements Client, Connection {
         in = factory.createInputProtocol(socket.getInputStream());
         out = factory.createOutputProtocol(socket.getOutputStream());
         isConnected = true;
-        inputManager = new InputManager();
-        inputThread = new Thread(inputManager);
+        inputThread = new Thread(new InputManager());
         inputThread.start();
         managerThread = new Thread(new EventManager());
         managerThread.start();
