@@ -64,16 +64,20 @@ public class SocketClient implements Client, Connection {
 
     @Override
     public void connect() throws IOException {
-        socket = new Socket();
-        socket.connect(new InetSocketAddress(host, port));
-        in = factory.createInputProtocol(socket.getInputStream());
-        out = factory.createOutputProtocol(socket.getOutputStream());
-        isConnected = true;
-        inputThread = new Thread(new InputManager());
-        inputThread.start();
-        managerThread = new Thread(new EventManager());
-        managerThread.start();
-        handler.clientConnect();
+        if(isConnected) {
+            throw new IllegalStateException("Client is already connected.");
+        } else {
+            socket = new Socket();
+            socket.connect(new InetSocketAddress(host, port));
+            in = factory.createInputProtocol(socket.getInputStream());
+            out = factory.createOutputProtocol(socket.getOutputStream());
+            isConnected = true;
+            inputThread = new Thread(new InputManager());
+            inputThread.start();
+            managerThread = new Thread(new EventManager());
+            managerThread.start();
+            handler.clientConnect();
+        }
     }
 
     @Override
