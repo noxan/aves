@@ -42,6 +42,7 @@ public class SocketClient implements Client, Connection {
         this.handler = handler;
         this.factory = factory;
         this.clientEvents = new LinkedBlockingQueue<Tuple<ClientEvent, Object>>();
+        this.isConnected = false;
     }
 
     @Override
