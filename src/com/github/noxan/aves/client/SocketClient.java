@@ -111,7 +111,8 @@ public class SocketClient implements Client, Connection {
                         offerEvent(ClientEvent.SERVER_DISCONNECT, null);
                     }
                 } catch(IOException e) {
-                    e.printStackTrace();
+                    isConnected = false;
+                    offerEvent(ClientEvent.SERVER_LOST, null);
                 }
             }
         }
