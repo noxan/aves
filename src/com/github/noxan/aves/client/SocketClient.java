@@ -67,6 +67,7 @@ public class SocketClient implements Client, Connection {
         socket.connect(new InetSocketAddress(host, port));
         in = factory.createInputProtocol(socket.getInputStream());
         out = factory.createOutputProtocol(socket.getOutputStream());
+        isConnected = true;
         inputManager = new InputManager();
         inputThread = new Thread(inputManager);
         inputThread.start();
@@ -76,6 +77,7 @@ public class SocketClient implements Client, Connection {
 
     @Override
     public void disconnect() {
+        isConnected = false;
         handler.clientDisconnect();
     }
 
