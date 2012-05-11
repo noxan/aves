@@ -95,7 +95,7 @@ public class SocketServer implements Server, Runnable {
         while(isRunning) {
             try {
                 Socket socket = server.accept();
-                Connection connection = new SocketConnection(this, socket, factory);
+                SocketConnection connection = new SocketConnection(this, socket, factory);
                 connection.start();
             } catch(SocketTimeoutException ignored) {
             } catch(IOException e) {

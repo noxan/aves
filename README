@@ -12,6 +12,9 @@ Version 0.1 (alpha)
 - generic protocol factory
 - string based protocol implementation
 
+Version 0.2 (alpha)
+- socket client framework
+
 Version 0.9 (beta)
 
 Version 1.0 (release)

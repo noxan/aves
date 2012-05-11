@@ -7,7 +7,6 @@ package com.github.noxan.aves.net;
 
 import java.io.EOFException;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.Socket;
 
 import com.github.noxan.aves.protocol.InputProtocol;
@@ -44,7 +43,6 @@ public class SocketConnection implements Connection {
         }
     }
 
-    @Override
     public void start() {
         server.offerEvent(ServerEvent.CLIENT_CONNECT, this);
         isConnected = true;
@@ -53,7 +51,7 @@ public class SocketConnection implements Connection {
     }
 
     @Override
-    public void stop() {
+    public void disconnect() {
         isConnected = false;
         try {
             socket.close();
@@ -69,8 +67,8 @@ public class SocketConnection implements Connection {
     }
 
     @Override
-    public InetAddress getHost() {
-        return socket.getInetAddress();
+    public String getHost() {
+        return socket.getInetAddress().getHostAddress();
     }
 
     @Override
