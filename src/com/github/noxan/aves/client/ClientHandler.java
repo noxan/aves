@@ -8,4 +8,6 @@ public interface ClientHandler {
     public void readData(Object data);
 
     public void serverDisconnect();
+
+    public void serverLost();
 }
