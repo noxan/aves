@@ -60,7 +60,6 @@ public class SocketClient implements Client, Connection {
 
     @Override
     public void connect() throws IOException {
-        handler.clientConnect();
         socket = new Socket();
         socket.connect(new InetSocketAddress(host, port));
         in = factory.createInputProtocol(socket.getInputStream());
@@ -70,6 +69,7 @@ public class SocketClient implements Client, Connection {
         inputThread.start();
         managerThread = new Thread(new EventManager());
         managerThread.start();
+        handler.clientConnect();
     }
 
     @Override
