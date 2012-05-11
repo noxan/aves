@@ -107,6 +107,7 @@ public class SocketClient implements Client, Connection {
                     if(data != null) {
                         offerEvent(ClientEvent.DATA_READ, data);
                     } else {
+                        isConnected = false;
                         offerEvent(ClientEvent.SERVER_DISCONNECT, null);
                     }
                 } catch(IOException e) {
