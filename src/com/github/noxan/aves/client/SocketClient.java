@@ -102,7 +102,11 @@ public class SocketClient implements Client, Connection {
             while(true) {
                 try {
                     Object data = in.read();
-                    offerEvent(ClientEvent.DATA_READ, data);
+                    if(data != null) {
+                        offerEvent(ClientEvent.DATA_READ, data);
+                    } else {
+                        offerEvent(ClientEvent.SERVER_DISCONNECT, null);
+                    }
                 } catch(IOException e) {
                     e.printStackTrace();
                 }
