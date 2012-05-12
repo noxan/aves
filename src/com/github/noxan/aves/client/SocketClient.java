@@ -76,7 +76,7 @@ public class SocketClient implements Client, Connection {
             inputThread.start();
             managerThread = new Thread(new EventManager());
             managerThread.start();
-            handler.clientConnect();
+            handler.clientConnect(this);
         }
     }
 
@@ -99,7 +99,7 @@ public class SocketClient implements Client, Connection {
             } catch(IOException e) {
                 e.printStackTrace();
             }
-            handler.clientDisconnect();
+            handler.clientDisconnect(this);
         } else {
             throw new IllegalStateException("Client is not connected.");
         }
@@ -117,13 +117,13 @@ public class SocketClient implements Client, Connection {
                 if(event != null) {
                     switch(event.getFirst()) {
                         case DATA_READ:
-                            handler.readData(event.getSecond());
+                            handler.readData(SocketClient.this, event.getSecond());
                             break;
                         case SERVER_DISCONNECT:
-                            handler.serverDisconnect();
+                            handler.serverDisconnect(SocketClient.this);
                             break;
                         case SERVER_LOST:
-                            handler.serverLost();
+                            handler.serverLost(SocketClient.this);
                             break;
                     }
                 }

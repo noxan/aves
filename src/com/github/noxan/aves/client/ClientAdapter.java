@@ -2,22 +2,22 @@ package com.github.noxan.aves.client;
 
 public class ClientAdapter implements ClientHandler {
     @Override
-    public void clientConnect() {
+    public void clientConnect(Client client) {
     }
 
     @Override
-    public void clientDisconnect() {
+    public void clientDisconnect(Client client) {
     }
 
     @Override
-    public void readData(Object data) {
+    public void readData(Client client, Object data) {
     }
 
     @Override
-    public void serverDisconnect() {
+    public void serverDisconnect(Client client) {
     }
 
     @Override
-    public void serverLost() {
+    public void serverLost(Client client) {
     }
 }

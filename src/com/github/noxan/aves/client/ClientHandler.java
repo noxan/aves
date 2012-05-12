@@ -1,13 +1,13 @@
 package com.github.noxan.aves.client;
 
 public interface ClientHandler {
-    public void clientConnect();
+    public void clientConnect(Client client);
 
-    public void clientDisconnect();
+    public void clientDisconnect(Client client);
 
-    public void readData(Object data);
+    public void readData(Client client, Object data);
 
-    public void serverDisconnect();
+    public void serverDisconnect(Client client);
 
-    public void serverLost();
+    public void serverLost(Client client);
 }
