@@ -143,9 +143,10 @@ public class SocketServer implements Server, Runnable {
             while(isRunning || serverEvents.isEmpty()) {
                 Tuple<ServerEvent, Object> event = serverEvents.poll();
                 if(event != null) {
+                    Tuple<?, ?> read;
                     switch(event.getFirst()) {
                         case DATA_READ:
-                            Tuple<?, ?> read = (Tuple<?, ?>)event.getSecond();
+                            read = (Tuple<?, ?>)event.getSecond();
                             handler.readData((Connection)read.getFirst(), read.getSecond());
                             break;
                         case CLIENT_CONNECT:
@@ -161,6 +162,8 @@ public class SocketServer implements Server, Runnable {
                             connections.remove((Connection)event.getSecond());
                             break;
                         case DATA_WRITE:
+                            read = (Tuple<?, ?>)event.getSecond();
+                            handler.writeData((Connection)read.getFirst(), read.getSecond());
                             break;
                     }
                 }
