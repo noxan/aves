@@ -39,6 +39,7 @@ public class SocketConnection implements Connection {
     @Override
     public void write(Object data) throws IOException {
         if(isConnected) {
+            server.offerEvent(ServerEvent.DATA_WRITE, new Tuple<Connection, Object>(this, data));
             out.write(data);
         }
     }
