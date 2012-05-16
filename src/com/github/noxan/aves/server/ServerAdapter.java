@@ -8,6 +8,10 @@ public class ServerAdapter implements ServerHandler {
     }
 
     @Override
+    public void writeData(Connection connection, Object data) {
+    }
+
+    @Override
     public void clientConnect(Connection connection) {
     }
 
