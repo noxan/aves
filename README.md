@@ -4,6 +4,9 @@ aves is a simple java server framework (socket based).
 
 https://github.com/noxan/aves
 
+## Samples and demos
+
+https://github.com/noxan/aves-demo
 
 ## Roadmap for development
 
